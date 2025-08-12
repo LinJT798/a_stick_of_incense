@@ -6,48 +6,31 @@ class ArrowSystem {
         // 箭矢对象池
         this.arrowPool = [];
         this.activeArrows = [];
-        this.maxArrows = 100;
         
-        // 难度参数
+        // 从配置加载参数
+        this.loadDifficultyConfig();
+        
+        // 游戏状态
         this.gameTime = 0;
         this.spawnBudget = 0;
-        this.baseSpawnRate = 0.5; // L0
-        this.spawnRateGrowth = 0.02; // a
-        this.spawnRateLogGrowth = 0.1; // b
-        
-        // 箭矢速度参数
-        this.baseSpeed = 200; // v0
-        this.maxSpeed = 600; // vMax
-        this.speedGrowth = 15; // c
-        
-        // 公平性参数
-        this.minTTC = 0.3; // 最小反应时间
-        this.safeRadius = 80; // 安全半径
-        this.preDelay = 160; // 读条时间（毫秒）
         
         // 模式系统
         this.currentMode = 'calm';
         this.modeTimer = 0;
-        this.modeDurations = {
-            calm: 5000,
-            build: 8000,
-            peak: 10000,
-            recover: 4000
-        };
-        
-        // 边缘生成参数
-        this.edgeOffsets = {
-            top: { x: 0, y: -16 },
-            bottom: { x: 0, y: 16 },
-            left: { x: -16, y: 0 },
-            right: { x: 16, y: 0 }
-        };
         
         // 导演系统
         this.recentTTCs = [];
         this.dangerLevel = 0;
         
         this.createArrowPool();
+    }
+    
+    // 加载难度配置
+    loadDifficultyConfig() {
+        this.config = difficultyConfig.getConfig();
+        this.modeDurations = difficultyConfig.modeDurations;
+        this.edgeOffsets = difficultyConfig.edgeOffsets;
+        this.maxArrows = difficultyConfig.maxArrows;
     }
 
     createArrowPool() {
@@ -62,6 +45,9 @@ class ArrowSystem {
     }
 
     start() {
+        // 重新加载配置（支持运行时切换难度）
+        this.loadDifficultyConfig();
+        
         this.gameTime = 0;
         this.spawnBudget = 0;
         this.currentMode = 'calm';
@@ -99,7 +85,7 @@ class ArrowSystem {
     }
 
     updateMode() {
-        const duration = this.modeDurations[this.currentMode];
+        const duration = difficultyConfig.modeDurations[this.currentMode];
         
         if (this.modeTimer >= duration) {
             this.modeTimer = 0;
@@ -124,18 +110,13 @@ class ArrowSystem {
 
     calculateSpawnRate() {
         const t = this.gameTime / 1000; // 转换为秒
-        let baseRate = this.baseSpawnRate + this.spawnRateGrowth * t + 
-                      this.spawnRateLogGrowth * Math.log(1 + t);
+        const config = this.config;
+        let baseRate = config.baseSpawnRate + config.spawnRateGrowth * t + 
+                      config.spawnRateLogGrowth * Math.log(1 + t);
         
         // 根据模式调整
-        const modeMultipliers = {
-            calm: 0.6,
-            build: 1.0,
-            peak: 1.5,
-            recover: 0.3
-        };
-        
-        baseRate *= modeMultipliers[this.currentMode];
+        const modeMultiplier = config.modeMultipliers[this.currentMode] || 1.0;
+        baseRate *= modeMultiplier;
         
         // 根据危险等级调整
         baseRate *= (1 - this.dangerLevel * 0.2);
@@ -145,8 +126,9 @@ class ArrowSystem {
 
     calculateArrowSpeed() {
         const t = this.gameTime / 1000;
-        const speed = this.baseSpeed + this.speedGrowth * Math.sqrt(t);
-        return Math.min(speed, this.maxSpeed);
+        const config = this.config;
+        const speed = config.baseSpeed + config.speedGrowth * Math.sqrt(t);
+        return Math.min(speed, config.maxSpeed);
     }
 
     spawnArrow() {
@@ -262,12 +244,12 @@ class ArrowSystem {
         const ttc = distance / speed;
         
         // 检查最小反应时间
-        if (ttc < this.minTTC) {
+        if (ttc < this.config.minTTC) {
             return false;
         }
         
         // 检查安全半径
-        if (distance < this.safeRadius) {
+        if (distance < this.config.safeRadius) {
             return false;
         }
         

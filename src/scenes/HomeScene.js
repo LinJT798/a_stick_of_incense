@@ -15,7 +15,7 @@ class HomeScene extends Phaser.Scene {
 
         // 添加装饰图2
         this.add.image(466, 580, 'img_decor_2').setOrigin(0, 0).setDisplaySize(268, 268);
-
+        
         // 添加开始按钮
         const startBtn = this.add.image(647, 660, 'btn_start')
             .setOrigin(0, 0)

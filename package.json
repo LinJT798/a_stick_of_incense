@@ -1,0 +1,14 @@
+{
+  "name": "yi-zhu-xiang-game",
+  "version": "1.0.0",
+  "description": "一炷香 - 中国传统文化主题躲避游戏",
+  "main": "index.js",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "dev": "python3 -m http.server 8080"
+  },
+  "keywords": ["game", "phaser", "dodge"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}

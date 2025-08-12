@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Figma-Context-MCP__get_figma_data",
+      "WebFetch(domain:www.figma.com)",
+      "Bash(mkdir:*)",
+      "Bash(tree:*)",
+      "Bash(rm:*)",
+      "Bash(curl:*)",
+      "Bash(git init:*)",
+      "Bash(git branch:*)",
+      "Bash(git remote add:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

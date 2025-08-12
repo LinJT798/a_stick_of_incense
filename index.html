@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一炷香 - 游戏</title>
+    <style>
+        @font-face {
+            font-family: 'GameFont';
+            src: url('./assets/fonts/MFYiBi_Noncommercial-Regular.ttf') format('truetype');
+        }
+        
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #2c2c2c;
+            box-sizing: border-box;
+        }
+        
+        #game-container {
+            border: 2px solid #444;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
+    <script src="src/config/GameConfig.js?v=5"></script>
+    <script src="src/scenes/PreloadScene.js?v=5"></script>
+    <script src="src/scenes/HomeScene.js?v=5"></script>
+    <script src="src/scenes/MainScene.js?v=5"></script>
+    <script src="src/scenes/GameOverScene.js?v=5"></script>
+    <script src="src/utils/ChineseNumbers.js?v=5"></script>
+    <script src="src/systems/PlayerController.js?v=5"></script>
+    <script src="src/systems/ArrowSystem.js?v=5"></script>
+    <script src="src/systems/IncenseTimer.js?v=5"></script>
+    <script src="src/main.js?v=5"></script>
+</body>
+</html>

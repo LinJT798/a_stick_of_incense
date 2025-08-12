@@ -278,7 +278,7 @@ assets/
 │   └── bgm/
 │       └── main_bgm.mp3             # 主背景音乐（没有也可以）
 └── fonts/
-    └── MFYiBi_Noncommercial-Regular.ttf         # Chicle字体文件
+    └── MFYiBi_Noncommercial-Regular.ttf         # 字体文件
 ```
 
 ### 资源键名映射

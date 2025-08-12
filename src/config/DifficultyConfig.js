@@ -4,8 +4,8 @@ class DifficultyConfig {
         this.config = {
             // 生成频率参数
             baseSpawnRate: 0.3,        // 初始生成率（箭/秒）
-            spawnRateGrowth: 0.015,     // 线性增长率
-            spawnRateLogGrowth: 0.08,   // 对数增长率
+            spawnRateGrowth: 0.025,     // 线性增长率
+            spawnRateLogGrowth: 0.10,   // 对数增长率
             
             // 箭矢速度参数
             baseSpeed: 300,             // 初始速度（像素/秒）

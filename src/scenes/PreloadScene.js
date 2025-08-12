@@ -4,42 +4,52 @@ class PreloadScene extends Phaser.Scene {
     }
 
     preload() {
-        const progressBar = this.add.graphics();
+        // 添加黑色背景
+        this.cameras.main.setBackgroundColor('#000000');
+        
+        // 创建进度条相关图形
         const progressBox = this.add.graphics();
-        progressBox.fillStyle(0x222222, 0.8);
+        const progressBar = this.add.graphics();
+        
+        // 绘制进度条背景框（深灰色）
+        progressBox.fillStyle(0x222222, 1);
         progressBox.fillRect(456, 450, 600, 50);
-
-        const width = this.cameras.main.width;
-        const height = this.cameras.main.height;
+        
+        // 创建加载文字（位置与进度条一致）
         const loadingText = this.make.text({
-            x: width / 2,
-            y: height / 2 - 50,
+            x: 756, // 进度条中心 (456 + 300)
+            y: 430, // 进度条上方
             text: '加载中...',
             style: {
-                font: '30px monospace',
-                fill: '#ffffff'
+                fontFamily: 'GameFont, Arial',
+                fontSize: '24px',
+                color: '#ffffff'
             }
         });
         loadingText.setOrigin(0.5, 0.5);
-
+        
+        // 创建百分比文字
         const percentText = this.make.text({
-            x: width / 2,
-            y: height / 2 + 25,
+            x: 756, // 进度条中心
+            y: 475, // 进度条中心
             text: '0%',
             style: {
-                font: '24px monospace',
-                fill: '#ffffff'
+                fontFamily: 'Arial',
+                fontSize: '20px',
+                color: '#ffffff'
             }
         });
         percentText.setOrigin(0.5, 0.5);
-
+        
+        // 监听加载进度
         this.load.on('progress', (value) => {
             percentText.setText(parseInt(value * 100) + '%');
             progressBar.clear();
-            progressBar.fillStyle(0xffffff, 1);
+            progressBar.fillStyle(0x4CAF50, 1); // 绿色进度条
             progressBar.fillRect(466, 460, 580 * value, 30);
         });
-
+        
+        // 加载完成后清理
         this.load.on('complete', () => {
             progressBar.destroy();
             progressBox.destroy();

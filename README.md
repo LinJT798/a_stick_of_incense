@@ -2,9 +2,31 @@
 
 一款融合中国传统文化元素的躲避类网页游戏。
 
+## 🎮 在线试玩
+
+👉 [https://linjt798.github.io/a_stick_of_incense/](https://linjt798.github.io/a_stick_of_incense/)
+
 ## 游戏简介
 
 玩家需要操控角色躲避四面八方射来的箭矢，以"香"作为时间单位（10秒=一炷香），挑战自己能坚持多少炷香。
+
+## 📸 游戏截图
+
+### 首页场景
+![首页](screenshots/home.png)
+*游戏主界面，点击开始按钮进入游戏*
+
+### 介绍场景
+![介绍](screenshots/intro.png)
+*游戏介绍与教程界面*
+
+### 主游戏场景
+![游戏中](screenshots/gameplay.png)
+*躲避箭矢的核心玩法，右侧香炉显示时间*
+
+### 结算场景
+![结算](screenshots/gameover.png)
+*显示玩家坚持的香数，可选择重新开始*
 
 ## 游戏特色
 

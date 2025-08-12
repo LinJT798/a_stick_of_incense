@@ -49,9 +49,11 @@ class PreloadScene extends Phaser.Scene {
 
         // 加载图片资源
         this.load.image('bg_main', 'assets/images/backgrounds/bg_main.png');
+        this.load.image('bg_intro', 'assets/images/backgrounds/bg_intro.png');
         this.load.image('img_title', 'assets/images/ui/img_title.png');
         this.load.image('btn_start', 'assets/images/ui/btn_start.png');
         this.load.image('btn_restart', 'assets/images/ui/btn_restart.png');
+        this.load.image('img_intro_decor', 'assets/images/ui/img_intro_decor.png');
         this.load.image('img_decor_1', 'assets/images/decorations/img_decor_1.png');
         this.load.image('img_decor_2', 'assets/images/decorations/img_decor_2.png');
         this.load.image('img_decor_3', 'assets/images/decorations/img_decor_3.png');

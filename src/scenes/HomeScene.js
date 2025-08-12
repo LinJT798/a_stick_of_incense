@@ -16,19 +16,19 @@ class HomeScene extends Phaser.Scene {
         // 添加装饰图2
         this.add.image(466, 580, 'img_decor_2').setOrigin(0, 0).setDisplaySize(268, 268);
         
-        // 添加开始按钮
-        const startBtn = this.add.image(647, 660, 'btn_start')
-            .setOrigin(0, 0)
+        // 添加开始按钮（设置中心点为0.5,0.5以实现中心缩放）
+        const startBtn = this.add.image(647 + 109, 660 + 72.5, 'btn_start')  // 调整到中心位置
+            .setOrigin(0.5, 0.5)
             .setDisplaySize(218, 145)
             .setInteractive({ useHandCursor: true });
-
+        
         // 记录原始显示大小
         const originalWidth = 218;
         const originalHeight = 145;
 
         // 按钮悬停效果
         startBtn.on('pointerover', () => {
-            startBtn.setDisplaySize(originalWidth * 1.05, originalHeight * 1.05);
+            startBtn.setDisplaySize(originalWidth * 1.02, originalHeight * 1.02);
             startBtn.setTint(0xffffcc);
         });
 
@@ -39,12 +39,12 @@ class HomeScene extends Phaser.Scene {
 
         // 按钮点击事件
         startBtn.on('pointerdown', () => {
-            startBtn.setDisplaySize(originalWidth * 0.95, originalHeight * 0.95);
+            startBtn.setDisplaySize(originalWidth * 0.98, originalHeight * 0.98);
         });
 
         startBtn.on('pointerup', () => {
             startBtn.setDisplaySize(originalWidth, originalHeight);
-            this.scene.start('MainScene');
+            this.scene.start('IntroScene');
         });
 
         // 播放背景音乐（全局单例）

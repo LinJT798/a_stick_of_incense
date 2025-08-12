@@ -28,19 +28,19 @@ class GameOverScene extends Phaser.Scene {
             color: '#000000'
         }).setOrigin(0, 0);
 
-        // 添加重新开始按钮
-        const restartBtn = this.add.image(904, 690, 'btn_restart')
-            .setOrigin(0, 0)
+        // 添加重新开始按钮（设置中心点为0.5,0.5以实现中心缩放）
+        const restartBtn = this.add.image(904 + 109, 690 + 72.5, 'btn_restart')  // 调整到中心位置
+            .setOrigin(0.5, 0.5)
             .setDisplaySize(218, 145)
             .setInteractive({ useHandCursor: true });
-
+        
         // 记录原始显示大小
         const originalWidth = 218;
         const originalHeight = 145;
 
         // 按钮悬停效果
         restartBtn.on('pointerover', () => {
-            restartBtn.setDisplaySize(originalWidth * 1.05, originalHeight * 1.05);
+            restartBtn.setDisplaySize(originalWidth * 1.02, originalHeight * 1.02);
             restartBtn.setTint(0xffffcc);
         });
 
@@ -51,7 +51,7 @@ class GameOverScene extends Phaser.Scene {
 
         // 按钮点击事件
         restartBtn.on('pointerdown', () => {
-            restartBtn.setDisplaySize(originalWidth * 0.95, originalHeight * 0.95);
+            restartBtn.setDisplaySize(originalWidth * 0.98, originalHeight * 0.98);
         });
 
         restartBtn.on('pointerup', () => {

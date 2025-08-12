@@ -70,12 +70,8 @@ class PreloadScene extends Phaser.Scene {
             spacing: 0
         });
 
-        // 尝试加载背景音乐（可选）
-        try {
-            this.load.audio('bgm_main', ['assets/audio/bgm/main_bgm.mp3']);
-        } catch (e) {
-            console.log('背景音乐加载失败，继续运行');
-        }
+        // 加载背景音乐
+        this.load.audio('bgm_main', ['assets/audio/bgm/main_bgm.mp3']);
     }
 
     create() {

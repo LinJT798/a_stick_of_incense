@@ -47,10 +47,24 @@ class HomeScene extends Phaser.Scene {
             this.scene.start('MainScene');
         });
 
-        // 尝试播放背景音乐
-        if (this.sound.get('bgm_main')) {
-            const bgm = this.sound.add('bgm_main', { loop: true, volume: 0.5 });
+        // 播放背景音乐（全局单例）
+        if (!this.game.bgmPlaying) {
+            const bgm = this.sound.add('bgm_main', { 
+                loop: true, 
+                volume: 0.5 
+            });
+            
+            // 播放音乐
             bgm.play();
+            
+            // 标记已播放，防止重复播放
+            this.game.bgmPlaying = true;
+            this.game.bgm = bgm;
+            
+            // 确保场景切换时音乐不停止
+            this.events.once('shutdown', () => {
+                // 场景关闭时不停止音乐
+            });
         }
     }
 }

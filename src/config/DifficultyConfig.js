@@ -3,14 +3,14 @@ class DifficultyConfig {
         // 直接定义配置参数，不再有多个预设
         this.config = {
             // 生成频率参数
-            baseSpawnRate: 0.3,        // 初始生成率（箭/秒）
-            spawnRateGrowth: 0.025,     // 线性增长率
-            spawnRateLogGrowth: 0.10,   // 对数增长率
+            baseSpawnRate: 0.5,        // 初始生成率（箭/秒）
+            spawnRateGrowth: 0.05,     // 线性增长率
+            spawnRateLogGrowth: 0.15,   // 对数增长率
             
             // 箭矢速度参数
             baseSpeed: 300,             // 初始速度（像素/秒）
-            maxSpeed: 600,              // 最大速度
-            speedGrowth: 10,            // 速度增长率
+            maxSpeed: 800,              // 最大速度
+            speedGrowth: 15,            // 速度增长率
             
             // 公平性参数
             minTTC: 0.5,                // 最小反应时间（秒）
